@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavaScriptLibraryMappings">
+    <file url="file://$PROJECT_DIR$" libraries="{bootstrap-table, bootstrap-theme, jquery-3.3.1}" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/static/UsersAjax.js" libraries="{jquery.dataTables}" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/templates/admin.html" libraries="{jquery.dataTables}" />
+  </component>
+</project>

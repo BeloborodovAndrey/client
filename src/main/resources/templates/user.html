@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--для переключения вкладок-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.0/js/bootstrap-select.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.js"></script>
+
+    <title>User page</title>
+    <div th:replace="fragments/header :: header-css"/>
+</head>
+<body>
+<!--Добавляем горизонтальную полосу сверху-->
+<div th:replace="fragments/header :: header"/>
+
+<!-- общий контейнер компонентов-->
+<div class="container-fluid">
+    <div class="row">
+        <!--левая панель c кнопками-->
+        <div class="col-6 col-md-2">
+            <ul class="nav nav-pills flex-column">
+                <li><a th:if="${#authentication.getAuthorities().stream().findFirst().get().getAuthority().equals('ADMIN')}" href="/admin" th:text="Admin"></a></li>
+                <li class="active"><a href="/user">User</a></li>
+            </ul>
+        </div>
+        <!--таблица бользователя (панель)-->
+        <div class="col">
+            <div class="panel panel-default">
+                <div class="panel-heading"><h1>User information-page</h1></div>
+                <div class="panel-body">
+                    <!--вкладка с таблицей пользователя-->
+                    <div id="table" class="tab-pane fade in active">
+                        <h2>About user</h2>
+                        <table class="table">
+                            <thead class="thead-light">
+                            <tr>
+                                <th>ID</th>
+                                <th>First name</th>
+                                <th>Last Name</th>
+                                <th>Age</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th th:text="${#authentication.principal.id}"></th>
+                                <th th:text="${#authentication.principal.username}"></th>
+                                <th th:text="${#authentication.principal.lastname}"></th>
+                                <th th:text="${#authentication.principal.age}"></th>
+                                <th th:text="${#authentication.principal.email}"></th>
+                                <th th:text="${#authentication.principal.rolesList}"></th>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+</html>
